@@ -11,7 +11,7 @@ class Currency(models.Model):
     total_volume = models.FloatField()
 
     class Meta:
-        ordering = ['market_cap']
+        ordering = ['-market_cap']
 
     def __str__(self):
         return f"{self.name} ({self.symbol})"
