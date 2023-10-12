@@ -33,5 +33,6 @@ class CurrencyPostSerializer(serializers.ModelSerializer):
     class Meta:
         model = CurrencyPost
         fields = [
-            'id', 'user', 'topic', 'content', 'created_at', 'updated_at', 'currency', 'image', 'is_owner'
+            'id', 'user', 'topic', 'content', 'created_at', 'updated_at', 'currency', 'image', 'is_owner',
+            'profile_image', 'profile_id'
         ]
