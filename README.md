@@ -1,5 +1,11 @@
 # BlockBoard Cryptocurrency Tracker
 
+###
+
+Cloudinary storage
+Rest
+Pillow
+
 Sources:
 
 https://stackoverflow.com/questions/69510138/how-to-get-data-from-external-api-to-django-rest-framework - for connecting external API to Rest
