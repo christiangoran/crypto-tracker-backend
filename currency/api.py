@@ -1,6 +1,8 @@
 import requests
 from env import COINMARKETCAP_API_KEY
 
+# from https://coinmarketcap.com/api/documentation/v1/#section/Quick-Start-Guide
+
 
 def fetch_data_from_coinmarketcap():
     url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest'
