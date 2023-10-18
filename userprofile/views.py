@@ -1,3 +1,4 @@
+from django.db.models import Count
 from rest_framework import generics
 from .models import UserProfile
 from .serializers import UserProfileSerializer
@@ -6,7 +7,9 @@ from crypto_tracker_backend.permissions import IsOwnerOrReadOnly
 
 
 class UserProfileList(generics.ListCreateAPIView):
-    queryset = UserProfile.objects.all()
+    queryset = UserProfile.objects.annotate(
+        favouritecurrencies_count=Count('user__favouritecurrencies')
+    )
     serializer_class = UserProfileSerializer  # the one that creates the fields
     # Here I change what user can see when they are not logged in
     permission_classes = [IsOwnerOrReadOnly]
