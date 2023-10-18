@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'userprofile',
     'currencypost',
     'currency',
+    'favouritecurrencies',
 ]
 
 MIDDLEWARE = [

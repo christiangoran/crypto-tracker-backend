@@ -22,4 +22,5 @@ urlpatterns = [
     path('', include('userprofile.urls')),
     path('', include('currencypost.urls')),
     path('', include('currency.urls')),
+    path('', include('favouritecurrencies.urls')),
 ]
