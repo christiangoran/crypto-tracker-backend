@@ -8,6 +8,7 @@ class UserProfileSerializer(serializers.ModelSerializer):
     user = serializers.ReadOnlyField(source='user.username')
     is_owner = serializers.SerializerMethodField()
     favourite_currencies = serializers.SerializerMethodField()
+    favourite_currencies_count = serializers.SerializerMethodField()
 
     def get_is_owner(self, obj):
         return obj.user == self.context['request'].user
@@ -23,8 +24,11 @@ class UserProfileSerializer(serializers.ModelSerializer):
             return serializer.data
         return None
 
+    def get_favourite_currencies_count(self, obj):
+        return obj.favouritecurrencies_count
+
     class Meta:
         model = UserProfile
         fields = [
-            'id', 'user', 'name', 'bio', 'image', 'created_at', 'updated_at', 'is_owner', 'favourite_currencies'
+            'id', 'user', 'name', 'bio', 'image', 'created_at', 'updated_at', 'is_owner', 'favourite_currencies', 'favourite_currencies_count',
         ]
