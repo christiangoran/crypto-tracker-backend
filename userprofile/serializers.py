@@ -5,6 +5,21 @@ from favouritecurrencies.serializers import FavouriteCurrenciesSerializer
 
 
 class UserProfileSerializer(serializers.ModelSerializer):
+    """
+    This serializer class handles the conversion of UserProfile instances to JSON,
+    and vice versa, to easily send/receive data from the client to the server.
+
+    Fields (these are added to the JSON string):
+        user: Gets the username of the associated user.
+        is_owner: Checks if the request user is the owner of the profile.
+        favourite_currencies: Lists the favourite currencies of the user.
+        favourite_currencies_count: counts the number of favourite currencies the user has.
+
+    Methods:
+        get_is_owner: Checks if the request user is the owner of the profile.
+        get_favourite_currencies: Lists the favourite currencies if the user is authenticated.
+        get_favourite_currencies_count: Returns the count of favourite currencies for the user.
+    """
     user = serializers.ReadOnlyField(source='user.username')
     is_owner = serializers.SerializerMethodField()
     favourite_currencies = serializers.SerializerMethodField()

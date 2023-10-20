@@ -1,3 +1,4 @@
+from django.contrib.humanize.templatetags.humanize import naturaltime
 from rest_framework import serializers
 from .models import CurrencyPost
 
@@ -11,6 +12,8 @@ class CurrencyPostSerializer(serializers.ModelSerializer):
     profile_id = serializers.IntegerField(
         source='user.userprofile.id', read_only=True
     )
+    created_at = serializers.SerializerMethodField()
+    updated_at = serializers.SerializerMethodField()
 
     def validate_image(self, value):
         if value.size > 2 * 1024 * 1024:
@@ -29,6 +32,12 @@ class CurrencyPostSerializer(serializers.ModelSerializer):
 
     def get_is_owner(self, obj):
         return obj.user == self.context['request'].user
+
+    def get_created_at(self, obj):
+        return naturaltime(obj.created_at)
+
+    def get_updated_at(self, obj):
+        return naturaltime(obj.updated_at)
 
     class Meta:
         model = CurrencyPost
