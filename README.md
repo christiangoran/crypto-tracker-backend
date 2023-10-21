@@ -3,8 +3,12 @@
 ## Bugs & problems
 
 - Hitting the 32kb limit on Heroku config vars
+
   - When trying to add a config var with the coinmarketcap API, I am unable to, and the most probable cause for it is that I have reached the 32kb limit that Heroku has on config vars.
-    - Solution: ?
+    - Solution: There seem to have been a corrupted Heroku app, after deleting and creating a new app, I could add the necessary config vars
+
+- After deploying to Heroku, my currency model was empty and I need to find out how to make my Heroku app call the Coinmarketcap API to populate my currency model.
+  - I added the Heroku Scheduler service to my Heroku app and configured it to run "python3 manage.py update_currencies" every 10 minutes.
 
 ###
 
