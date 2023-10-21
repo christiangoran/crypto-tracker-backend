@@ -1,5 +1,11 @@
 # BlockBoard Cryptocurrency Tracker
 
+## Bugs & problems
+
+- Hitting the 32kb limit on Heroku config vars
+  - When trying to add a config var with the coinmarketcap API, I am unable to, and the most probable cause for it is that I have reached the 32kb limit that Heroku has on config vars.
+    - Solution: ?
+
 ###
 
 Cloudinary storage

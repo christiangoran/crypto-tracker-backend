@@ -1,5 +1,7 @@
 import requests
-from env import COINMARKETCAP_API_KEY
+import os 
+
+COINMARKETCAP_API_KEY = os.environ.get("COINMARKETCAP_API_KEY")
 
 # from https://coinmarketcap.com/api/documentation/v1/#section/Quick-Start-Guide
 
