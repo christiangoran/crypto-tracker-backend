@@ -64,7 +64,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = 'DEV' in os.environ
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1:8000','127.0.0.1', 'crypto-tracker-heroku-8c1782389a55.herokuapp.com']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1:8000', '127.0.0.1', 'crypto-tracker-heroku-b5acda38c706.herokuapp.com']
 
 
 # Application definition
