@@ -64,7 +64,8 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = 'DEV' in os.environ
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1:8000', '127.0.0.1', os.environ.get('ALLOWED_HOST')]
+ALLOWED_HOSTS = ['localhost', 'localhost:3000', '127.0.0.1:3000', '127.0.0.1:8000'
+                 '127.0.0.1', os.environ.get('ALLOWED_HOST')]
 
 
 # Application definition
@@ -110,7 +111,8 @@ MIDDLEWARE = [
 
 if 'CLIENT_ORIGIN' in os.environ:
     CORS_ALLOWED_ORIGINS = [
-        os.environ.get('CLIENT_ORIGIN')
+        os.environ.get('CLIENT_ORIGIN'),
+        'http://localhost:3000',
     ]
 else:
     CORS_ALLOWED_ORIGIN_REGEXES = [
@@ -155,7 +157,6 @@ else:
     DATABASES = {
         'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
     }
-
 
 
 # Password validation
