@@ -39,7 +39,7 @@ JWT_AUTH_REFRESH_COOKIE = 'my-app-refresh'
 JWT_AUTH_SAMESITE = 'None'
 
 REST_AUTH_SERIALIZERS = {
-    'USER_DETAILS_SERIALIZER': 'crypto_tracker_backend.serializers.CurrentUserSerializer',
+    'USER_DETAILS_SERIALIZER': 'crypto_tracker_backend.serializers.UserProfileSerializer',
 }
 
 CSRF_COOKIE_SAMESITE = 'None'
