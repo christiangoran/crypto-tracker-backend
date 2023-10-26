@@ -1,5 +1,5 @@
 from django.db import models
-from .api import fetch_data_from_coinmarketcap
+from .api import fetch_data_from_coinmarketcap, get_cryptocurrency_info
 
 
 class Currency(models.Model):
@@ -10,6 +10,7 @@ class Currency(models.Model):
     market_cap = models.FloatField()
     total_volume = models.FloatField()
     logo_url = models.URLField(blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
 
     class Meta:
         ordering = ['-market_cap']
@@ -20,10 +21,12 @@ class Currency(models.Model):
     def update_currency_data():
         data = fetch_data_from_coinmarketcap()
         for currency in data['data']:
+            info = get_cryptocurrency_info(currency['id'])
             Currency.objects.update_or_create(
                 currency_id=currency['id'],
                 defaults={
-                    'logo_url': currency['logo'],
+                    'description': info['description'],
+                    'logo_url': info['logo_url'],
                     'name': currency['name'],
                     'symbol': currency['symbol'],
                     'current_price': currency['quote']['USD']['price'],
