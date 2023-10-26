@@ -9,6 +9,7 @@ class Currency(models.Model):
     current_price = models.FloatField()
     market_cap = models.FloatField()
     total_volume = models.FloatField()
+    logo_url = models.URLField(blank=True, null=True)
 
     class Meta:
         ordering = ['-market_cap']
@@ -22,6 +23,7 @@ class Currency(models.Model):
             Currency.objects.update_or_create(
                 currency_id=currency['id'],
                 defaults={
+                    'logo_url': currency['logo'],
                     'name': currency['name'],
                     'symbol': currency['symbol'],
                     'current_price': currency['quote']['USD']['price'],

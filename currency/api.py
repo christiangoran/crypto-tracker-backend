@@ -1,5 +1,5 @@
 import requests
-import os 
+import os
 
 COINMARKETCAP_API_KEY = os.environ.get("COINMARKETCAP_API_KEY")
 
