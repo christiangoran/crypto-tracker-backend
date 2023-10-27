@@ -5,7 +5,7 @@ from currency.models import Currency
 class Command(BaseCommand):
     """
     To update currencies data from CoinMarketCap, run:
-    python manage.py update_currencies
+    python3 manage.py update_currencies
 
     """
     help = 'Update currencies data from CoinMarketCap'
