@@ -21,7 +21,7 @@ class FavouriteCurrenciesList(generics.ListCreateAPIView):
 
 
 class FavouriteCurrenciesDetail(generics.RetrieveDestroyAPIView):
-    permission_classes = [IsOwnerOrReadOnly]
+    permission_classes = [permissions.IsAuthenticated]
     serializer_class = FavouriteCurrenciesSerializer
 
     def get_queryset(self):
