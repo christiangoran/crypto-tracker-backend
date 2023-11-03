@@ -16,9 +16,6 @@ class FavouriteCurrenciesList(generics.ListCreateAPIView):
         return FavouriteCurrencies.objects.filter(user=self.request.user)
 
     def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
-
-    def perform_create(self, serializer):
         # This makes sure that the favourite currency is connected with the user who created it.
         serializer.save(user=self.request.user)
 
