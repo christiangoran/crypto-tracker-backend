@@ -1,4 +1,4 @@
-from rest_framework import generics, permissions
+from rest_framework import generics, permissions, viewsets
 from crypto_tracker_backend.permissions import IsOwnerOrReadOnly
 from .models import FavouriteCurrencies
 from .serializers import FavouriteCurrenciesSerializer

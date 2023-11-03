@@ -33,6 +33,8 @@ LOGGING = {
 
 - The problem was then identified as being a missing Meta.model in my CurrentUserSerializer
 
+- Having problems authenticating when sending requests from my frontend and I am not sure why my currentUser token is 'undefined'
+
 ###
 
 Cloudinary storage
