@@ -23,4 +23,14 @@ class FavouriteCurrenciesList(generics.ListCreateAPIView):
 class FavouriteCurrenciesDetail(generics.RetrieveDestroyAPIView):
     permission_classes = [IsOwnerOrReadOnly]
     serializer_class = FavouriteCurrenciesSerializer
-    queryset = FavouriteCurrencies.objects.all()
+
+    def get_queryset(self):
+        return FavouriteCurrencies.objects.filter(user=self.request.user)
+
+    def get_object(self):
+
+        queryset = self.filter_queryset(self.get_queryset())
+
+        obj = queryset.get(pk=self.kwargs.get('pk'))
+        self.check_object_permissions(self.request, obj)
+        return obj
