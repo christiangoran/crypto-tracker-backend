@@ -5,12 +5,15 @@ from .serializers import FavouriteCurrenciesSerializer
 
 
 class FavouriteCurrenciesList(generics.ListCreateAPIView):
-    queryset = FavouriteCurrencies.objects.all()
     serializer_class = FavouriteCurrenciesSerializer
     permission_classes = [
 
         permissions.IsAuthenticatedOrReadOnly
     ]
+
+    def get_queryset(self):
+        # this makes sure that only the logged in user can see their own favourites
+        return FavouriteCurrencies.objects.filter(user=self.request.user)
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)

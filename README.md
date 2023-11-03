@@ -34,6 +34,7 @@ LOGGING = {
 - The problem was then identified as being a missing Meta.model in my CurrentUserSerializer
 
 - Having problems authenticating when sending requests from my frontend and I am not sure why my currentUser token is 'undefined'
+  - All of this has been a cocktail of errors. The backend views.py for favouritecurrencies needed to be changed so only the specific authenticated user could retrieve his/her specific list of favourites. Then this array of favourites needed to be handled correcly in the frontend.
 
 ###
 
