@@ -1,5 +1,5 @@
-from rest_framework import generics, permissions
-from crypto_tracker_backend.permissions import IsOwnerOrReadOnly
+from rest_framework import permissions, generics
+from rest_framework.permissions import IsAuthenticated
 from .models import FavouriteCurrencies
 from .serializers import FavouriteCurrenciesSerializer
 
@@ -18,16 +18,9 @@ class FavouriteCurrenciesList(generics.ListCreateAPIView):
 
 
 class FavouriteCurrenciesDetail(generics.RetrieveDestroyAPIView):
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [IsAuthenticated]
     serializer_class = FavouriteCurrenciesSerializer
 
     def get_queryset(self):
+        # This  overrides the queryset so that  a user only sees their favourites
         return FavouriteCurrencies.objects.filter(user=self.request.user)
-
-    def get_object(self):
-
-        queryset = self.filter_queryset(self.get_queryset())
-
-        obj = queryset.get(pk=self.kwargs.get('pk'))
-        self.check_object_permissions(self.request, obj)
-        return obj
