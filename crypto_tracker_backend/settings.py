@@ -58,7 +58,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = 'DEV' in os.environ
 
 ALLOWED_HOSTS = ['localhost', 'localhost:3000', '127.0.0.1:3000', '127.0.0.1:8000', 'http://192.168.178.20:3000', '8000-christiango-cryptotrack-mdqxlbt6rmt.ws-eu105.gitpod.io'
-                 '127.0.0.1', os.environ.get('ALLOWED_HOST')]
+                 '127.0.0.1', os.environ.get('ALLOWED_HOST'), '3000-christiango-cryptotrack-bobhep5qfip.ws-eu105.gitpod.io']
 
 
 # Application definition
@@ -109,6 +109,7 @@ if 'CLIENT_ORIGIN' in os.environ:
         'http://192.168.178.20:3000',
         'http://127.0.0.1:3000'
         '8000-christiango-cryptotrack-mdqxlbt6rmt.ws-eu105.gitpod.io',
+        '3000-christiango-cryptotrack-bobhep5qfip.ws-eu105.gitpod.io'
     ]
 else:
     CORS_ALLOWED_ORIGIN_REGEXES = [
