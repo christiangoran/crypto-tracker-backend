@@ -107,7 +107,7 @@ if 'CLIENT_ORIGIN' in os.environ:
         os.environ.get('CLIENT_ORIGIN'),
         'http://localhost:3000',
         'http://192.168.178.20:3000',
-        'http://127.0.0.1:3000'
+        'http://127.0.0.1:3000',
         'https://8000-christiango-cryptotrack-mdqxlbt6rmt.ws-eu105.gitpod.io',
         'https://3000-christiango-cryptotrack-bobhep5qfip.ws-eu105.gitpod.io',
     ]
