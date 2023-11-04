@@ -1,4 +1,4 @@
-from rest_framework import generics, permissions, viewsets
+from rest_framework import generics, permissions
 from crypto_tracker_backend.permissions import IsOwnerOrReadOnly
 from .models import FavouriteCurrencies
 from .serializers import FavouriteCurrenciesSerializer
@@ -6,10 +6,7 @@ from .serializers import FavouriteCurrenciesSerializer
 
 class FavouriteCurrenciesList(generics.ListCreateAPIView):
     serializer_class = FavouriteCurrenciesSerializer
-    permission_classes = [
-
-        permissions.IsAuthenticatedOrReadOnly
-    ]
+    permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
         # this makes sure that only the logged in user can see their own favourites
