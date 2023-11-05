@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from currency.models import Currency
 
 
 class CurrencyPost(models.Model):
@@ -8,9 +9,8 @@ class CurrencyPost(models.Model):
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    # will need to get back to this one
-    currency = models.CharField(max_length=255, blank=True)
-    # once the currency model is done
+    currency = models.ForeignKey(
+        Currency, on_delete=models.SET_NULL, null=True, blank=True)
     image = models.ImageField(
         upload_to='images/', default='../default_post_ltn67t',
         blank=True
