@@ -40,7 +40,7 @@ class UserProfileSerializer(serializers.ModelSerializer):
         return None
 
     def get_favourite_currencies_count(self, obj):
-        return obj.favouritecurrencies_count
+        return FavouriteCurrencies.objects.filter(user=obj.user).count()
 
     class Meta:
         model = UserProfile
