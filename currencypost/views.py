@@ -23,3 +23,6 @@ class CurrencyPostDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = CurrencyPost.objects.all()
     serializer_class = CurrencyPostSerializer
     permission_classes = [IsOwnerOrReadOnly]
+
+    def perform_update(self, serializer):
+        serializer.save()

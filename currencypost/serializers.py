@@ -6,12 +6,8 @@ from .models import CurrencyPost
 class CurrencyPostSerializer(serializers.ModelSerializer):
     user = serializers.ReadOnlyField(source='user.username')
     is_owner = serializers.SerializerMethodField()
-    profile_image = serializers.ImageField(
-        source='user.userprofile.image', read_only=True
-    )
-    profile_id = serializers.IntegerField(
-        source='user.userprofile.id', read_only=True
-    )
+    profile_id = serializers.ReadOnlyField(source='owner.profile.id')
+    profile_image = serializers.ReadOnlyField(source='owner.profile.image.url')
     created_at = serializers.SerializerMethodField()
     updated_at = serializers.SerializerMethodField()
 

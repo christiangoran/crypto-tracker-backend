@@ -5,11 +5,11 @@ from django.contrib.auth.models import User
 
 class UserProfile(models.Model):
     user = models.OneToOneField(
-        User, on_delete=models.CASCADE, related_name='profile')
+        User, on_delete=models.CASCADE)
     name = models.CharField(max_length=255, blank=True)
     bio = models.TextField(blank=True)
     image = models.ImageField(
-        upload_to='images/', default='../default_profile_y7ymw3.jpg'
+        upload_to='images/', default='../default_x4yqw3.webp'
     )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
