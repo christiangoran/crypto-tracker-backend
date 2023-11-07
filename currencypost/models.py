@@ -12,7 +12,8 @@ class CurrencyPost(models.Model):
     currency = models.ForeignKey(
         Currency, on_delete=models.SET_NULL, null=True, blank=True)
     image = models.ImageField(
-        upload_to='images/', default='../default_post_ltn67t',
+        upload_to='images/',
+        # default='../default_post_ltn67t',
         blank=True
     )
 
