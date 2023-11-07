@@ -9,7 +9,7 @@ class UserProfile(models.Model):
     name = models.CharField(max_length=255, blank=True)
     bio = models.TextField(blank=True)
     image = models.ImageField(
-        upload_to='images/', default='../default_x4yqw3.webp'
+        upload_to='images/', default='../default_x4yqw3.webpm'
     )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
