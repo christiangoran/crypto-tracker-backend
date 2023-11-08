@@ -4,10 +4,10 @@ from django.contrib.auth import get_user_model
 
 
 class CurrentUserSerializer(UserDetailsSerializer):
-    profile_id = serializers.ReadOnlyField(source='profile.id')
-    profile_image = serializers.ReadOnlyField(source='profile.image.url')
+    profile_id = serializers.ReadOnlyField(source='user.id')
+    profile_image = serializers.ReadOnlyField(source='user.image.url')
 
-     class Meta(UserDetailsSerializer.Meta):
+    class Meta(UserDetailsSerializer.Meta):
         fields = UserDetailsSerializer.Meta.fields + (
             'profile_id', 'profile_image'
         )
