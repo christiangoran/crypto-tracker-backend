@@ -35,6 +35,7 @@ LOGGING = {
 
 - Having problems authenticating when sending requests from my frontend and I am not sure why my currentUser token is 'undefined'
   - All of this has been a cocktail of errors. The backend views.py for favouritecurrencies needed to be changed so only the specific authenticated user could retrieve his/her specific list of favourites. Then this array of favourites needed to be handled correcly in the frontend.
+    (https://www.django-rest-framework.org/api-guide/permissions/)
 
 ###
 
@@ -57,3 +58,7 @@ https://docs.djangoproject.com/en/4.2/howto/custom-management-commands/ - custom
 https://www.youtube.com/watch?v=f3GfkvfpVAE - learning how to use coinmarketcaps api
 
 https://coinmarketcap.com/api/documentation/v1/#section/Quick-Start-Guide - how to use their api
+
+https://www.django-rest-framework.org/api-guide/permissions/ - Learning more about authentication
+
+https://www.freecodecamp.org/news/format-compact-numbers-with-javascript/ - format large numbers
