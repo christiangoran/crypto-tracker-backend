@@ -111,7 +111,7 @@ if 'CLIENT_ORIGIN' in os.environ:
         'https://8000-christiango-cryptotrack-mdqxlbt6rmt.ws-eu105.gitpod.io',
         'https://3000-christiango-cryptotrack-bobhep5qfip.ws-eu105.gitpod.io',
         'https://3001-christiango-cryptotrack-p0j28pes4st.ws-eu106.gitpod.io',
-        'https://3000-christiango-cryptotrack-jhy91ueo5b0.ws-eu106.gitpod.io/',
+        'https://3000-christiango-cryptotrack-jhy91ueo5b0.ws-eu106.gitpod.io',
     ]
 else:
     CORS_ALLOWED_ORIGIN_REGEXES = [
@@ -201,22 +201,3 @@ STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
-# # DEBUGGING
-
-# LOGGING = {
-#     'version': 1,
-#     'disable_existing_loggers': False,
-#     'handlers': {
-#         'console': {
-#             'class': 'logging.StreamHandler',
-#         },
-#     },
-#     'loggers': {
-#         'django': {
-#             'handlers': ['console'],
-#             'level': 'DEBUG',
-#             'propagate': True,
-#         },
-#     },
-# }
