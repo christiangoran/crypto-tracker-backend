@@ -1,5 +1,7 @@
 from django.test import TestCase, RequestFactory
 from django.contrib.auth import get_user_model
+from django.contrib.auth.models import User
+from userprofile.models import UserProfile
 from .serializers import CurrentUserSerializer
 from rest_framework.test import APITestCase, force_authenticate
 from rest_framework import status
@@ -42,15 +44,22 @@ class RootRouteTest(APITestCase):
 
 class IsOwnerOrReadOnlyTest(APITestCase):
     def setUp(self):
-        self.user = get_user_model().objects.create_user(
-            username='Testyroonie', password='password123')
-        self.other_user = get_user_model().objects.create_user(
-            username='hacker', password='password123')
+        self.user = User.objects.create_user(
+            'testuser', 'test@example.com', 'password123')
+        self.other_user = User.objects.create_user(
+            'otheruser', 'other@example.com', 'password123')
         self.permission = IsOwnerOrReadOnly()
         self.factory = RequestFactory()
+        self.user_profile = UserProfile.objects.get(user=self.user)
 
-    def test_safe_method_by_any_user(self):
+    def test_safe_method_by_any_user(self):  # Safe method is GET
         request = self.factory.get('/')
         request.user = self.other_user
         self.assertTrue(self.permission.has_object_permission(
             request, None, obj=self.user))
+
+    def test_unsafe_method_owner(self):  # Unsafe method is POST
+        request = self.factory.post('/')
+        request.user = self.user
+        self.assertTrue(self.permission.has_object_permission(
+            request, None, self.user_profile))
