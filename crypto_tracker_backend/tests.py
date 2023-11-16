@@ -45,9 +45,9 @@ class RootRouteTest(APITestCase):
 class IsOwnerOrReadOnlyTest(APITestCase):
     def setUp(self):
         self.user = User.objects.create_user(
-            'testuser', 'test@example.com', 'password123')
+            'testieMe', 'test@test.com', 'password123')
         self.other_user = User.objects.create_user(
-            'otheruser', 'other@example.com', 'password123')
+            'testieOther', 'other@test.com', 'password123')
         self.permission = IsOwnerOrReadOnly()
         self.factory = RequestFactory()
         self.user_profile = UserProfile.objects.get(user=self.user)
@@ -62,4 +62,11 @@ class IsOwnerOrReadOnlyTest(APITestCase):
         request = self.factory.post('/')
         request.user = self.user
         self.assertTrue(self.permission.has_object_permission(
+            request, None, self.user_profile))
+
+    # Unsafe method is POST and by other user
+    def test_unsafe_method_not_owner(self):
+        request = self.factory.delete('/')
+        request.user = self.other_user
+        self.assertFalse(self.permission.has_object_permission(
             request, None, self.user_profile))
