@@ -25,3 +25,12 @@ class FetchDataFromCoinMarketCapTest(TestCase):
 
         data = fetch_data_from_coinmarketcap()
         self.assertEqual(data, {'data': 'success'})
+
+    @patch('currency.api.requests.get')
+    def test_fetch_data_failure(self, mock_get):
+        mock_get.return_value.status_code = 400
+        mock_get.return_value.text = 'failure'
+
+        with self.assertRaises(Exception) as context:
+            fetch_data_from_coinmarketcap()
+        self.assertTrue('Failed to retrieve data' in str(context.exception))
