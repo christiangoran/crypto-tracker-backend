@@ -12,14 +12,14 @@ class FavouriteCurrenciesSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = FavouriteCurrencies
-        fields = [
-            'id', 'user', 'currency', 'created_at', 'is_owner'
-        ]
+        fields = ['id', 'user', 'currency', 'created_at', 'is_owner']
 
-    def create(self, validated_data):
-        try:
-            return super().create(validated_data)
-        except IntegrityError:
+    def validate(self, data):
+        user = self.context['request'].user
+        currency = data.get('currency')
+
+        if FavouriteCurrencies.objects.filter(user=user, currency=currency).exists():
             raise serializers.ValidationError(
-                'You have already added this currency to your favourites'
-            )
+                "You have already added this currency to your favourites")
+
+        return data
