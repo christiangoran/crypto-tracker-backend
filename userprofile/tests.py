@@ -41,3 +41,24 @@ class UserProfileAPITest(TestCase):
         self.assertEqual(response.data['name'], 'Test User')
         self.assertEqual(
             response.data['bio'], 'I am writing my test bio. Very exciting')
+
+    def test_update_user_profile(self):
+        """
+        Test updating a user's profile.
+        """
+        updated_data = json.dumps({
+            'name': 'Updated Name',
+            'bio': 'Updated bio information.'
+        })
+
+        response = self.client.patch(
+            reverse('userprofiledetailsview', kwargs={
+                    'id': self.user_profile.id}),
+            data=updated_data,
+            content_type='application/json'
+        )
+
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data['user'], 'testie')
+        self.assertEqual(response.data['name'], 'Updated Name')
+        self.assertEqual(response.data['bio'], 'Updated bio information.')
