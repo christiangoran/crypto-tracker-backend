@@ -18,7 +18,10 @@ class FavouriteCurrenciesSerializer(serializers.ModelSerializer):
         user = self.context['request'].user
         currency = data.get('currency')
 
-        if FavouriteCurrencies.objects.filter(user=user, currency=currency).exists():
+        if FavouriteCurrencies.objects.filter(
+            user=user,
+            currency=currency
+        ).exists():
             raise serializers.ValidationError(
                 "You have already added this currency to your favourites")
 

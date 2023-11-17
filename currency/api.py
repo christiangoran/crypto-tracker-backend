@@ -3,7 +3,8 @@ import os
 
 COINMARKETCAP_API_KEY = os.environ.get("COINMARKETCAP_API_KEY")
 
-# from https://coinmarketcap.com/api/documentation/v1/#section/Quick-Start-Guide
+# from https://coinmarketcap.com/
+# api/documentation/v1/#section/Quick-Start-Guide
 
 
 def fetch_data_from_coinmarketcap():

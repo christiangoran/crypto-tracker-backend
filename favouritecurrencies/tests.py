@@ -49,7 +49,9 @@ class FavouriteCurrenciesModelTest(APITestCase):
         if 'non_field_errors' in serializer.errors:
             error_detail = serializer.errors['non_field_errors'][0]
             self.assertEqual(
-                str(error_detail), 'You have already added this currency to your favourites')
+                str(error_detail),
+                'You have already added this currency to your favourites'
+            )
         else:
             self.fail(
                 "Unique constraint violation not captured by the serializer")

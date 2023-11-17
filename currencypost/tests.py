@@ -11,9 +11,16 @@ class CurrencyPostModelTest(TestCase):
         user = User.objects.create_user(
             username='testie', password='password123')
         currency = Currency.objects.create(
-            currency_id='1', name='Bitcoin', symbol='BTC', current_price=40000, market_cap=800000000, total_volume=50000)
+            currency_id='1',
+            name='Bitcoin',
+            symbol='BTC',
+            current_price=40000,
+            market_cap=800000000,
+            total_volume=50000)
         CurrencyPost.objects.create(user=user, topic='Bitcoin Rising',
-                                    content='Exciting times for Bitcoin!', currency=currency)
+                                    content='Exciting times for Bitcoin!',
+                                    currency=currency
+                                    )
 
     def test_currency_post_creation(self):
         post = CurrencyPost.objects.get(topic='Bitcoin Rising')
@@ -27,9 +34,18 @@ class CurrencyPostListViewTest(APITestCase):
         self.user = User.objects.create_user(
             username='testie', password='password123')
         self.currency = Currency.objects.create(
-            currency_id='1', name='Bitcoin', symbol='BTC', current_price=40000, market_cap=800000000, total_volume=50000)
-        CurrencyPost.objects.create(user=self.user, topic='Bitcoin Rising',
-                                    content='Exciting times for Bitcoin!', currency=self.currency)
+            currency_id='1',
+            name='Bitcoin',
+            symbol='BTC',
+            current_price=40000,
+            market_cap=800000000,
+            total_volume=50000
+        )
+        CurrencyPost.objects.create(
+            user=self.user,
+            topic='Bitcoin Rising',
+            content='Exciting times for Bitcoin!',
+            currency=self.currency)
 
     def test_get_currency_posts(self):
         actual_count = CurrencyPost.objects.count()

@@ -8,7 +8,8 @@ class CurrencyPostList(generics.ListCreateAPIView):
     queryset = CurrencyPost.objects.all()
     serializer_class = CurrencyPostSerializer
     permission_classes = [
-        # This permission class will allow only authenticated users to edit the post.
+        # This permission class will allow
+        # only authenticated users to edit the post.
         permissions.IsAuthenticatedOrReadOnly
     ]
 

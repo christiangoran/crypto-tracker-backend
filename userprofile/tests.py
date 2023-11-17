@@ -35,7 +35,10 @@ class UserProfileAPITest(TestCase):
         Test retrieving a user's profile.
         """
         response = self.client.get(
-            reverse('userprofiledetailsview', kwargs={'id': self.user_profile.id}))
+            reverse('userprofiledetailsview',
+                    kwargs={'id': self.user_profile.id}
+                    )
+        )
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data['user'], 'testie')
         self.assertEqual(response.data['name'], 'Test User')
