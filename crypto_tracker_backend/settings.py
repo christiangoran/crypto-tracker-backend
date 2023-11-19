@@ -55,7 +55,7 @@ SESSION_COOKIE_SECURE = True
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = 'DEV' in os.environ
+DEBUG = False
 
 ALLOWED_HOSTS = ['localhost', 'localhost:3000', '127.0.0.1:3000', '127.0.0.1:8000', 'http://192.168.178.20:3000', '8000-christiango-cryptotrack-mdqxlbt6rmt.ws-eu105.gitpod.io', '3001-christiango-cryptotrack-p0j28pes4st.ws-eu106.gitpod.io',
                  '127.0.0.1', os.environ.get('ALLOWED_HOST'), '3000-christiango-cryptotrack-bobhep5qfip.ws-eu105.gitpod.io', '3000-christiango-cryptotrack-jhy91ueo5b0.ws-eu106.gitpod.io',]
