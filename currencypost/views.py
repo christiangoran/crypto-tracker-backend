@@ -17,7 +17,7 @@ class CurrencyPostList(generics.ListCreateAPIView):
         DjangoFilterBackend,
     ]
     filterset_fields = [
-        'user__userprofile']
+        'user__userprofile', 'currency']
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
