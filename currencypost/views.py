@@ -2,6 +2,7 @@ from rest_framework import generics, permissions
 from .models import CurrencyPost
 from .serializers import CurrencyPostSerializer
 from crypto_tracker_backend.permissions import IsOwnerOrReadOnly
+from django_filters.rest_framework import DjangoFilterBackend
 
 
 class CurrencyPostList(generics.ListCreateAPIView):
@@ -12,6 +13,11 @@ class CurrencyPostList(generics.ListCreateAPIView):
         # only authenticated users to edit the post.
         permissions.IsAuthenticatedOrReadOnly
     ]
+    filter_backends = [
+        DjangoFilterBackend,
+    ]
+    filterset_fields = [
+        'user__userprofile']
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)

@@ -15,7 +15,7 @@ def fetch_data_from_coinmarketcap():
     }
     params = {
         'start': '1',
-        'limit': '100',
+        'limit': '200',
         'convert': 'USD',
     }
 
