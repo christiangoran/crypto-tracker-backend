@@ -1,4 +1,4 @@
-# **Crypto Tracker Backend API**
+# **BlockBoard Crypto Tracker Backend API**
 
 💻 [Live link](https://crypto-tracker-heroku-b5acda38c706.herokuapp.com/)
 
@@ -6,7 +6,7 @@ Welcome to the backend of BlockBoard Crypto Tracker, a dynamic and robust web ap
 
 Built using Django and Django REST framework, the backend infrastructure offers a secure, scalable, and efficient solution to manage vast amounts of data related to cryptocurrencies. The system is engineered to cater to both novice users and seasoned traders, providing them with up-to-date information and an interactive platform to track their favorite digital currencies.
 
-This was my 5th and last project as part of Code Institutes course in Full Stack Software Development.
+This was my 5th and last learning project as part of Code Institutes course in Full Stack Software Development.
 
 ## Table of Contents
 
@@ -110,7 +110,7 @@ The project code structure is meticulously organized and divided into various ap
 - [Cloudinary](https://cloudinary.com/) to store images for profile and events
 - [CI Python Linter](https://pep8ci.herokuapp.com/) was used for validation of python files.
 - [Lucidcharts](https://lucid.app/) has been used in project to design and document data model architecture.
-- [CodeAnyWhere](https://app.codeanywhere.com/) was IDE used for writing code and to push the code to GitHub
+- [VsCode](https://code.visualstudio.com) was IDE used for writing code and to push the code to GitHub
 - [GitHub](https://github.com/) was used as a remote repository to store project code
 - [Heroku](https://heroku.com) - Cloud platform. Justification: I used this was used to deploy the project into live environment
 - [Django REST Framework](https://www.django-rest-framework.org/) - API toolkit. Justification: I used this to build the back-end API
@@ -137,7 +137,16 @@ The project code structure is meticulously organized and divided into various ap
 
 ## Database Design
 
-### Database Models
+The end result of the design of the databases was tweaked along the way and looks somewhat different from the original design.
+
+The first diagram can be seen here
+
+<details>
+<summary>Model Diagram:</summary>
+<img src="media/models.png" width="50%"><br>
+</details><br>
+
+### Current Database Models
 
 #### Currency Model
 
@@ -327,7 +336,7 @@ All all models, views, serializers, urls, tests and admins tas taken through the
 
 - After deploying to Heroku, my currency model was empty and I need to find out how to make my Heroku app call the Coinmarketcap API to populate my currency model.
 
-  - I added the Heroku Scheduler service to my Heroku app and configured it to run "python3 manage.py update_currencies" every 10 minutes.
+  - I added the Heroku Scheduler service to my Heroku app and configured it to run "python3 manage.py update_currencies" every 10 minutes. Later changed it to update once a day, since I was running out of monthly API calls.
 
 - When sending a request from my signup form, a new user was registered to the database, but somewhere in the execution order after the registration I get a 500 error response. After looking through Heroku logs and not finding anything but a 500 error. I added LOGGING to my Django settings.py.
   - Solution: After 4-5 hours of searching for what the error could be. What eventually appeared to be the problem was the use of useNavigate/useHistory and that the use of this changed with the latest version of React. So after changing the code snippet "history.push("/signin");" and "const history = useNavigate();" to "const navigate = useNavigate();" and "navigate("/signin")" I managed to finally make it work.

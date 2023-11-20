@@ -136,9 +136,36 @@
 - Used coverage reports to ensure a high percentage of codebase testing.
 
 <details><summary>Test Results</summary>
-<img src="/media/automatedtests.png" >
+<img src="media/automatedtests.png" >
 
 </details>
+
+### Key Areas of Testing
+
+#### User Authentication Testing
+
+- **LogoutRouteTest**: Validates that the logout route clears cookies, ensuring secure user logout.
+- **CurrentUserSerializerTest**: Tests the serialization of current user data, verifying the presence of expected fields like username, email, and profile image.
+
+#### CRUD Operations on Currency Post Data
+
+- **CurrencyPostListViewTest**: Checks the retrieval of currency posts, ensuring the correct number and details are fetched.
+- **CurrencyModelTest**: Validates the creation of currency models with attributes like current price and market cap.
+- **FetchDataFromCoinMarketCapTest**: Tests the functionality of fetching data from CoinMarketCap, handling both successful and failed data retrieval.
+
+#### Profile and User Preference Management
+
+- **UserProfileAPITest**: Tests user profile retrieval and updates, ensuring correct data handling and response.
+- **FavouriteCurrenciesModelTest**: Validates the creation of favorite currencies and the serializer's functionality, including unique constraint checks.
+
+#### Permission and Access Control Testing
+
+- **IsOwnerOrReadOnlyTest**: Tests custom permission class `IsOwnerOrReadOnly` to ensure that only owners can perform unsafe methods (POST, DELETE), while safe methods (GET) are accessible by any user.
+
+### Test Implementation Examples
+
+- **CurrencyPostModelTest**: Sets up a user, currency, and currency post, and validates the creation and attributes of the currency post.
+- **CurrencyPostListViewTest**: Creates a currency post and uses an API request to validate the retrieval of currency posts.
 
 ## Bugs
 
