@@ -148,6 +148,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'crypto_tracker_backend.wsgi.application'
 
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+
 if 'DEV' in os.environ:
     DATABASES = {
         'default': {
@@ -157,7 +160,9 @@ if 'DEV' in os.environ:
     }
 else:
     DATABASES = {
-        'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
+        'default': dj_database_url.config(
+            default=os.environ.get("DATABASE_URL")
+        )
     }
 
 AUTH_PASSWORD_VALIDATORS = [
