@@ -56,7 +56,7 @@ ALLOWED_HOSTS = [
     '127.0.0.1:3000',
     'localhost:5173',
     '127.0.0.1:8000',
-    'http://192.168.178.20:3000',
+    'http://192.0.2.1:3000',  # Adjust this IP to the correct one
     '8000-christiango-cryptotrack-mdqxlbt6rmt.ws-eu105.gitpod.io',
     '3001-christiango-cryptotrack-p0j28pes4st.ws-eu106.gitpod.io',
     '3000-christiango-cryptotrack-bobhep5qfip.ws-eu105.gitpod.io',
@@ -110,9 +110,8 @@ MIDDLEWARE = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    'https://christiangoran.github.io',
-    'https://crypto-tracker-frontend-heroku-96a37577175c.herokuapp.com',
-    'http://localhost:3000',
+    os.environ.get('CLIENT_ORIGIN'),
+    os.environ.get('CLIENT_ORIGIN_DEV'),
 ]
 
 CORS_ALLOW_CREDENTIALS = True
