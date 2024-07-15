@@ -49,8 +49,23 @@ SESSION_COOKIE_SECURE = True
 SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = False
 
-ALLOWED_HOSTS = ['localhost', 'localhost:3000', '127.0.0.1:3000', 'localhost:5173', '127.0.0.1:8000', 'http://192.168.178.20:3000', '8000-christiango-cryptotrack-mdqxlbt6rmt.ws-eu105.gitpod.io', '3001-christiango-cryptotrack-p0j28pes4st.ws-eu106.gitpod.io',
-                 '127.0.0.1', os.environ.get('ALLOWED_HOST'), '3000-christiango-cryptotrack-bobhep5qfip.ws-eu105.gitpod.io', '3000-christiango-cryptotrack-jhy91ueo5b0.ws-eu106.gitpod.io', 'http://192.168.178.20:3000']
+ALLOWED_HOSTS = [
+    'localhost',
+    'localhost:3000',
+    '127.0.0.1',
+    '127.0.0.1:3000',
+    'localhost:5173',
+    '127.0.0.1:8000',
+    'http://192.168.178.20:3000',
+    '8000-christiango-cryptotrack-mdqxlbt6rmt.ws-eu105.gitpod.io',
+    '3001-christiango-cryptotrack-p0j28pes4st.ws-eu106.gitpod.io',
+    '3000-christiango-cryptotrack-bobhep5qfip.ws-eu105.gitpod.io',
+    '3000-christiango-cryptotrack-jhy91ueo5b0.ws-eu106.gitpod.io',
+    'crypto-tracker-heroku-b5acda38c706.herokuapp.com',
+    'crypto-tracker-frontend-heroku-96a37577175c.herokuapp.com',
+    'christiangoran.github.io',
+    os.environ.get('ALLOWED_HOST'),
+]
 
 INSTALLED_APPS = [
     'corsheaders',
@@ -91,28 +106,14 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'allauth.account.middleware.AccountMiddleware',  # Add this line
+    'allauth.account.middleware.AccountMiddleware',
 ]
 
-# if 'CLIENT_ORIGIN' in os.environ:
-#     CORS_ALLOWED_ORIGINS = [
-#         os.environ.get('CLIENT_ORIGIN'),
-#         'http://localhost:3000',
-#         'http://localhost:3001',
-#         'http://localhost:5173',
-#         'http://127.0.0.1:8000',
-#         'http://192.168.178.20:3000',
-#         'http://127.0.0.1:3000',
-#         'http://192.168.178.20:3000'
-#     ]
-
-
-# else:
-#     CORS_ALLOWED_ORIGIN_REGEXES = [
-#         r"^https://.*\.gitpod\.io$",
-#     ]'
-
-CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOWED_ORIGINS = [
+    'https://christiangoran.github.io',
+    'https://crypto-tracker-frontend-heroku-96a37577175c.herokuapp.com',
+    'http://localhost:3000',
+]
 
 CORS_ALLOW_CREDENTIALS = True
 
@@ -170,5 +171,6 @@ USE_L10N = True
 USE_TZ = True
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
