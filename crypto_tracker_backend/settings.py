@@ -14,7 +14,6 @@ COINMARKETCAP_API = os.environ.get("COINMARKETCAP_API")
 MEDIA_URL = '/media/'
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 REST_FRAMEWORK = {
@@ -47,23 +46,14 @@ CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SAMESITE = 'None'
 SESSION_COOKIE_SECURE = True
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv('SECRET_KEY')
-
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['localhost', 'localhost:3000', '127.0.0.1:3000', '127.0.0.1:8000', 'http://192.168.178.20:3000', '8000-christiango-cryptotrack-mdqxlbt6rmt.ws-eu105.gitpod.io', '3001-christiango-cryptotrack-p0j28pes4st.ws-eu106.gitpod.io',
-                 '127.0.0.1', os.environ.get('ALLOWED_HOST'), '3000-christiango-cryptotrack-bobhep5qfip.ws-eu105.gitpod.io', '3000-christiango-cryptotrack-jhy91ueo5b0.ws-eu106.gitpod.io',]
-
-
-# Application definition
+ALLOWED_HOSTS = ['localhost', 'localhost:3000', '127.0.0.1:3000', 'localhost:5173', '127.0.0.1:8000', 'http://192.168.178.20:3000', '8000-christiango-cryptotrack-mdqxlbt6rmt.ws-eu105.gitpod.io', '3001-christiango-cryptotrack-p0j28pes4st.ws-eu106.gitpod.io',
+                 '127.0.0.1', os.environ.get('ALLOWED_HOST'), '3000-christiango-cryptotrack-bobhep5qfip.ws-eu105.gitpod.io', '3000-christiango-cryptotrack-jhy91ueo5b0.ws-eu106.gitpod.io', 'http://192.168.178.20:3000']
 
 INSTALLED_APPS = [
+    'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -80,7 +70,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'dj_rest_auth.registration',
-    'corsheaders',
+
     'django_filters',
 
     # My apps
@@ -94,33 +84,37 @@ SITE_ID = 1
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware',  # Add this line
 ]
 
-if 'CLIENT_ORIGIN' in os.environ:
-    CORS_ALLOWED_ORIGINS = [
-        os.environ.get('CLIENT_ORIGIN'),
-        'http://localhost:3000',
-        'http://192.168.178.20:3000',
-        'http://127.0.0.1:3000',
-        'https://8000-christiango-cryptotrack-mdqxlbt6rmt.ws-eu105.gitpod.io',
-        'https://3000-christiango-cryptotrack-bobhep5qfip.ws-eu105.gitpod.io',
-        'https://3001-christiango-cryptotrack-p0j28pes4st.ws-eu106.gitpod.io',
-        'https://3000-christiango-cryptotrack-jhy91ueo5b0.ws-eu106.gitpod.io',
-    ]
-else:
-    CORS_ALLOWED_ORIGIN_REGEXES = [
-        r"^https://.*\.gitpod\.io$",
-    ]
+# if 'CLIENT_ORIGIN' in os.environ:
+#     CORS_ALLOWED_ORIGINS = [
+#         os.environ.get('CLIENT_ORIGIN'),
+#         'http://localhost:3000',
+#         'http://localhost:3001',
+#         'http://localhost:5173',
+#         'http://127.0.0.1:8000',
+#         'http://192.168.178.20:3000',
+#         'http://127.0.0.1:3000',
+#         'http://192.168.178.20:3000'
+#     ]
+
+
+# else:
+#     CORS_ALLOWED_ORIGIN_REGEXES = [
+#         r"^https://.*\.gitpod\.io$",
+#     ]'
+
+CORS_ALLOW_ALL_ORIGINS = True
 
 CORS_ALLOW_CREDENTIALS = True
-
 
 ROOT_URLCONF = 'crypto_tracker_backend.urls'
 
@@ -142,10 +136,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'crypto_tracker_backend.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-
 if 'DEV' in os.environ:
     DATABASES = {
         'default': {
@@ -157,10 +147,6 @@ else:
     DATABASES = {
         'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
     }
-
-
-# Password validation
-# https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -177,27 +163,12 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
-# Internationalization
-# https://docs.djangoproject.com/en/3.2/topics/i18n/
-
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_L10N = True
-
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.2/howto/static-files/
-
 STATIC_URL = '/static/'
-
-# Default primary key field type
-# https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
