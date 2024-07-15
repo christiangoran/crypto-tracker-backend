@@ -114,6 +114,7 @@ if os.environ.get('CLIENT_ORIGIN'):
     CORS_ALLOWED_ORIGINS.append(os.environ.get('CLIENT_ORIGIN'))
 if os.environ.get('CLIENT_ORIGIN_DEV'):
     CORS_ALLOWED_ORIGINS.append(os.environ.get('CLIENT_ORIGIN_DEV'))
+
 CORS_ALLOW_CREDENTIALS = True
 
 ROOT_URLCONF = 'crypto_tracker_backend.urls'
