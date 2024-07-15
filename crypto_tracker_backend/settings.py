@@ -108,10 +108,12 @@ CORS_ALLOWED_ORIGINS = [
     'https://christiangoran.github.io',
     'https://crypto-tracker-frontend-heroku-96a37577175c.herokuapp.com',
     'http://localhost:3000',
-    os.environ.get('CLIENT_ORIGIN'),
-    os.environ.get('CLIENT_ORIGIN_DEV'),
 ]
 
+if os.environ.get('CLIENT_ORIGIN'):
+    CORS_ALLOWED_ORIGINS.append(os.environ.get('CLIENT_ORIGIN'))
+if os.environ.get('CLIENT_ORIGIN_DEV'):
+    CORS_ALLOWED_ORIGINS.append(os.environ.get('CLIENT_ORIGIN_DEV'))
 CORS_ALLOW_CREDENTIALS = True
 
 ROOT_URLCONF = 'crypto_tracker_backend.urls'
