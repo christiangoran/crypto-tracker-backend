@@ -19,3 +19,4 @@ typing_extensions==4.12.2
 urllib3==2.2.2
 psycopg2-binary # Or the latest compatible version
 djangorestframework-simplejwt
+gunicorn==21.2.0  
