@@ -112,6 +112,9 @@ MIDDLEWARE = [
 CORS_ALLOWED_ORIGINS = [
     os.environ.get('CLIENT_ORIGIN'),
     os.environ.get('CLIENT_ORIGIN_DEV'),
+    'https://christiangoran.github.io',
+    'https://crypto-tracker-frontend-heroku-96a37577175c.herokuapp.com',
+    'http://localhost:3000',
 ]
 
 CORS_ALLOW_CREDENTIALS = True
